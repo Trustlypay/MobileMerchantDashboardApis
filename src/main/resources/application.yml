@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        secure: true
+
+spring:
+  datasource:
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 20
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
+
+    # Local MySQL Configuration (Commented)
+    #    url: jdbc:mysql://localhost:3306/trustlypay_db?createDatabaseIfNotExist=true
+    #    username: root
+    #    password: Nanditha1301
+
+    # Existing Remote MySQL Configuration (Commented)
+    # url: jdbc:mysql://192.168.108.100:6446/trustlypay_db?createDatabaseIfNotExist=true
+    # username: trustlypay_appusr
+    # password: InHty6y12345%4RD
+
+    # New AWS RDS Configuration
+    url: jdbc:mysql://trustlypay-mysqldb001.c5iismwgg2g4.ap-south-1.rds.amazonaws.com:3306/trustlypay_db?serverTimezone=Asia/Kolkata
+
+    username: admin
+    password: Trustlypay$2025$$
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+
+session:
+  timeout: 420
+
+
+
