@@ -20,19 +20,19 @@ public class MerchantLoginService {
 
         // --- Hardcoded merchant credentials ---
         merchants.put("alex@trustlypay.com",
-                new MerchantInfo("1", passwordEncoder.encode("alex@123")));
+                new MerchantInfo("1", passwordEncoder.encode("123456")));
         merchants.put("ghighpvtoffice@gmail.com",
-                new MerchantInfo("2", passwordEncoder.encode("ghighp@123")));
+                new MerchantInfo("2", passwordEncoder.encode("123456")));
         merchants.put("ipayserveu@gmail.com",
-                new MerchantInfo("3", passwordEncoder.encode("ipay@123")));
+                new MerchantInfo("3", passwordEncoder.encode("123456")));
         merchants.put("candidplay@outlook.com",
-                new MerchantInfo("4", passwordEncoder.encode("candid@123")));
+                new MerchantInfo("4", passwordEncoder.encode("123456")));
         merchants.put("alisha@sainetworks.co.in",
-                new MerchantInfo("5", passwordEncoder.encode("sai@123")));
+                new MerchantInfo("5", passwordEncoder.encode("123456")));
         merchants.put("h8585982106@gmail.com",
-                new MerchantInfo("6", passwordEncoder.encode("hari@123")));
+                new MerchantInfo("6", passwordEncoder.encode("123456")));
         merchants.put("dpcenterprises@gmail.com",
-                new MerchantInfo("7", passwordEncoder.encode("dp@123")));
+                new MerchantInfo("7", passwordEncoder.encode("123456")));
         merchants.put("chuhai1002@outlook.com",
                 new MerchantInfo("9", passwordEncoder.encode("123456")));
         merchants.put("simbaa.money@gmail.com",

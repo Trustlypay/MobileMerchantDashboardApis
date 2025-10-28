@@ -97,10 +97,12 @@ public class DashboardSummaryService {
 
 
         if (totalCount > 0) {
-            success.put("percentage", ((int) success.get("totalCount") / (double) totalCount) * 100);
-            failed.put("percentage", ((int) failed.get("totalCount") / (double) totalCount) * 100);
-            pending.put("percentage", ((int) pending.get("totalCount") / (double) totalCount) * 100);
+            success.put("percentage", ((int) success.get("totalCount") / (double) totalCount) );
+            failed.put("percentage", ((int) failed.get("totalCount") / (double) totalCount) );
+            pending.put("percentage", ((int) pending.get("totalCount") / (double) totalCount) );
         }
+
+
 
         Map<String, Object> all = new HashMap<>(Map.of("status", "total volume", "totalAmount", totalAmount, "totalCount", totalCount));
 
