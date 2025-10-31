@@ -7,6 +7,7 @@ public class MerchantData {
     private String merchantName;
     private String merchantGid;
     private String vendorBank;
+    private String bankName;
 
     private long successCount;
     private long failedCount;
@@ -134,10 +135,19 @@ public class MerchantData {
         this.totalCount = totalCount;
     }
 
-    public MerchantData(String merchantName, String merchantGid, String vendorBank, long successCount, long failedCount, long pendingCount, long totalCount, BigDecimal successAmount, BigDecimal failedAmount, BigDecimal pendingAmount, BigDecimal totalAmount, double successPercentage, double failedPercentage, double pendingPercentage) {
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public MerchantData(String merchantName, String merchantGid, String vendorBank, String bankName, long successCount, long failedCount, long pendingCount, long totalCount, BigDecimal successAmount, BigDecimal failedAmount, BigDecimal pendingAmount, BigDecimal totalAmount, double successPercentage, double failedPercentage, double pendingPercentage) {
         this.merchantName = merchantName;
         this.merchantGid = merchantGid;
         this.vendorBank = vendorBank;
+        this.bankName = bankName;
         this.successCount = successCount;
         this.failedCount = failedCount;
         this.pendingCount = pendingCount;

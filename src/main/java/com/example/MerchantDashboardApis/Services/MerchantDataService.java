@@ -24,6 +24,7 @@ public class MerchantDataService {
                 m.name AS merchant_name,
                 m.merchant_gid,
                 vb.bank_name AS vendor_bank,
+                pvb.vendor_bank_name,
                 SUM(CASE WHEN t.transaction_status = 'success' THEN 1 ELSE 0 END) AS success_count,
                 SUM(CASE WHEN t.transaction_status = 'failed' THEN 1 ELSE 0 END) AS failed_count,
                 SUM(CASE WHEN t.transaction_status = 'pending' THEN 1 ELSE 0 END) AS pending_count,
@@ -45,6 +46,7 @@ public class MerchantDataService {
                   AND lpb.vendor_id IS NOT NULL AND lpb.vendor_id != 0
             ) t ON m.id = t.created_merchant
             LEFT JOIN vendor_bank vb ON t.vendor_id = vb.id
+            LEFT JOIN mb_payin_vendor_bank_name pvb ON t.vendor_id = pvb.vendor_id
             WHERE m.id = ?
             GROUP BY m.id, m.name, m.merchant_gid, vb.bank_name
             ORDER BY m.name ASC
@@ -62,6 +64,7 @@ public class MerchantDataService {
                 m.name AS merchant_name,
                 m.merchant_gid,
                 vb.bank_name AS vendor_bank,
+                pvb.vendor_bank_name,
                 SUM(CASE WHEN pt.status = 'success' THEN 1 ELSE 0 END) AS success_count,
                 SUM(CASE WHEN pt.status = 'failed' THEN 1 ELSE 0 END) AS failed_count,
                 SUM(CASE WHEN pt.status = 'pending' THEN 1 ELSE 0 END) AS pending_count,
@@ -83,8 +86,9 @@ public class MerchantDataService {
                   AND vendor IS NOT NULL AND vendor != 0
             ) pt ON m.id = pt.merchant_id
             LEFT JOIN payout_vendor_bank vb ON pt.vendor = vb.id
+            LEFT JOIN mb_payout_vendor_bank_name pvb ON pt.vendor = pvb.vendor_id
             WHERE m.id = ?
-            GROUP BY m.id, m.name, m.merchant_gid, vb.bank_name
+            GROUP BY m.id, m.name, m.merchant_gid, vb.bank_name, pvb.vendor_bank_name
             ORDER BY m.name ASC
         """;
 
@@ -114,6 +118,7 @@ public class MerchantDataService {
         summary.setMerchantName(rs.getString("merchant_name"));
         summary.setMerchantGid(rs.getString("merchant_gid"));
         summary.setVendorBank(rs.getString("vendor_bank"));
+        summary.setBankName(rs.getString("vendor_bank_name"));
         summary.setSuccessCount(successCount);
         summary.setFailedCount(failedCount);
         summary.setPendingCount(pendingCount);
