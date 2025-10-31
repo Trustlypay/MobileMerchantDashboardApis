@@ -97,9 +97,9 @@ public class DashboardSummaryService {
 
 
         if (totalCount > 0) {
-            success.put("percentage", ((int) success.get("totalCount") / (double) totalCount) );
-            failed.put("percentage", ((int) failed.get("totalCount") / (double) totalCount) );
-            pending.put("percentage", ((int) pending.get("totalCount") / (double) totalCount) );
+            success.put("percentage", roundToTwoDecimals((int) success.get("totalCount") / (double) totalCount) );
+            failed.put("percentage", roundToTwoDecimals((int) failed.get("totalCount") / (double) totalCount) );
+            pending.put("percentage", roundToTwoDecimals((int) pending.get("totalCount") / (double) totalCount) );
         }
 
 
@@ -107,5 +107,9 @@ public class DashboardSummaryService {
         Map<String, Object> all = new HashMap<>(Map.of("status", "total volume", "totalAmount", totalAmount, "totalCount", totalCount));
 
         return List.of(failed, success, pending, all);
+    }
+
+    private double roundToTwoDecimals(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }

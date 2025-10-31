@@ -91,9 +91,9 @@ public class PayinVendorSummaryService {
 
             double totalAmount = successAmount + failedAmount + pendingAmount;
 
-            double successPercentage = totalCount > 0 ? (double) successCount / totalCount : 0.0;
-            double failedPercentage = totalCount > 0 ? (double) failedCount / totalCount : 0.0;
-            double pendingPercentage = totalCount > 0 ? (double) pendingCount / totalCount : 0.0;
+            double successPercentage = roundToTwoDecimals(totalCount > 0 ? (double) successCount / totalCount : 0.0 );
+            double failedPercentage = roundToTwoDecimals(totalCount > 0 ? (double) failedCount / totalCount : 0.0);
+            double pendingPercentage = roundToTwoDecimals(totalCount > 0 ? (double) pendingCount / totalCount : 0.0);
 
             // Fetch vendor name and bank name
             String vendorName = null;
@@ -139,5 +139,9 @@ public class PayinVendorSummaryService {
         result.put("vendorSummaries", vendorSummaries);
 
         return result;
+    }
+
+    private double roundToTwoDecimals(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }

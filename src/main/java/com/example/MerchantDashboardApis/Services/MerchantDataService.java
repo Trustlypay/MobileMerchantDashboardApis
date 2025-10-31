@@ -106,9 +106,9 @@ public class MerchantDataService {
         long totalCount = successCount + failedCount + pendingCount;
         BigDecimal totalAmount = successAmount.add(failedAmount).add(pendingAmount);
 
-        double successPct = totalCount > 0 ? (double) successCount / totalCount : 0;
-        double failedPct = totalCount > 0 ? (double) failedCount / totalCount : 0;
-        double pendingPct = totalCount > 0 ? (double) pendingCount / totalCount : 0;
+        double successPct = roundToTwoDecimals(totalCount > 0 ? (double) successCount / totalCount : 0 );
+        double failedPct = roundToTwoDecimals(totalCount > 0 ? (double) failedCount / totalCount : 0 );
+        double pendingPct = roundToTwoDecimals(totalCount > 0 ? (double) pendingCount / totalCount : 0 );
 
         MerchantData summary = new MerchantData();
         summary.setMerchantName(rs.getString("merchant_name"));
@@ -127,5 +127,9 @@ public class MerchantDataService {
         summary.setPendingPercentage(pendingPct);
 
         return summary;
+    }
+
+    private double roundToTwoDecimals(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }
